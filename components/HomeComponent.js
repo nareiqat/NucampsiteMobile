@@ -17,7 +17,7 @@ function RenderItem({item}) {
                     style={{margin: 10}}>
                     {item.description}
                     </Text>
-                </Card>
+            </Card>
         );
     }
     return <View />
