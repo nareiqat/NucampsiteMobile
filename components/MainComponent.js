@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Directory from './DirectoryComponent';
-// import About from './AboutComponent';
-// import Contact from './ContactComponent';
+import Favorites from './FavoritesComponent'
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -12,10 +13,10 @@ import {SafeAreaView} from 'react-native'
 import About from './AboutComponent'
 import Contact from './ContactComponent'
 import {Icon} from 'react-native-elements'
-// import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux'
 import Reservation from './ReservationComponent';
 import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from '../redux/ActionCreators';
+import Favorites from './FavoritesComponent';
 
     
 const mapDispatchToProps = {
@@ -148,6 +149,30 @@ const ReservationNavigator = createStackNavigator(
     }
 );
 
+
+const FavoritesNavigator = createStackNavigator(
+    {
+        Favorites: { screen: Favorites }
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='heart'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
 const CustomDrawerContentComponent = props => (
     <ScrollView>
         <SafeAreaView 
@@ -229,7 +254,20 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         
-        }
+        },  Favorites: {
+            screen: FavoritesNavigator,
+            navigationOptions: {
+                drawerLabel: 'My Favorites',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='heart'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
     },
     {
         drawerBackgroundColor: '#CEC8FF',
