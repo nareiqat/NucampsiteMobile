@@ -10,13 +10,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import {SafeAreaView} from 'react-native'
-import About from './AboutComponent'
-import Contact from './ContactComponent'
 import {Icon} from 'react-native-elements'
 import { connect } from 'react-redux'
 import Reservation from './ReservationComponent';
 import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from '../redux/ActionCreators';
-import Favorites from './FavoritesComponent';
+
 
     
 const mapDispatchToProps = {
